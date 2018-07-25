@@ -9,7 +9,7 @@ composer install
 ```
 Configure your database connection in the .env file, then run:
 ```
-php artisan migrate:install
+php artisan migrate:fresh
 ```
 Now the database should be all set. To begin using the API, you will need to add a task owner.
 ```
