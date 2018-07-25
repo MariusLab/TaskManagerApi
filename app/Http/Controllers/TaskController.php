@@ -65,7 +65,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        return new TaskResource($task);
     }
 
     /**
@@ -73,21 +73,49 @@ class TaskController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return TaskResource
+     * @return TaskResource|JsonResponse
      */
     public function update(Request $request, Task $task)
     {
-        //
+        if ($request->user()->id !== $task->owner_id) {
+            return new JsonResponse(['error' => 'You are not authorized to edit this resource.'], 403);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'title' => 'nullable|string',
+            'description' => 'nullable|string',
+            'due_date' => 'nullable|date',
+            'completed_date' => 'nullable|date',
+        ]);
+
+        if ($validator->fails()) {
+            return new JsonResponse(['bad request' => $validator->errors()], 400);
+        }
+
+        $task->update($request->only(['title', 'description', 'due_date', 'completed_date']));
+
+        return new TaskResource($task);
     }
 
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Request $request, Task $task)
     {
-        //
+        if ($request->user()->id !== $task->owner_id) {
+            return new JsonResponse(['error' => 'You are not authorized to delete this resource.'], 403);
+        }
+
+        try {
+            $task->delete();
+        } catch (\Exception $e) {
+            return new JsonResponse(null, 500);
+        }
+
+        return new JsonResponse(null, 204);
     }
 }
