@@ -10,7 +10,7 @@ Then run:
 php artisan migrate:install
 ```
 Now the database should be all set. To begin using the API, you will need to add a task owner.
-```php
+```
 //[id] is most likely gonna be your users id, but could be anything
 //[api_key] is most likely gonna be the api key you generated for the user
 php artisan add:owner [id] [api_key]
