@@ -5,6 +5,7 @@ namespace MariusLab\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use MariusLab\Http\Resources\TaskCollection;
 use MariusLab\Http\Resources\TaskResource;
 use MariusLab\Task;
 
@@ -16,15 +17,15 @@ class TaskController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Return resource collection.
      *
-     * @return \Illuminate\Http\Response
+     * @return TaskCollection
      */
     public function index()
     {
-        return view('home', [
-            'tasks' => Task::all()
-        ]);
+        /** @var TaskCollection $taskCollection */
+        $taskCollection = TaskResource::collection(Task::all());
+        return $taskCollection;
     }
 
     /**
@@ -58,7 +59,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Return the specified resource.
      *
      * @param  int  $id
      * @return TaskResource

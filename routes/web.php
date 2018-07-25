@@ -11,4 +11,4 @@
 |
 */
 
-Route::get('/', 'TaskController@index');
+Route::get('/', 'HomeController@index');
