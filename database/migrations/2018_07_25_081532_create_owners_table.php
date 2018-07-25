@@ -15,7 +15,7 @@ class CreateOwnersTable extends Migration
     {
         Schema::create('owners', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('third_party_id')->index()->unique();
+            $table->integer('third_party_id')->index();
             $table->string('api_key')->unique();
             $table->softDeletes();
             $table->timestamps();
