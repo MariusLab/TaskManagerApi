@@ -3,18 +3,28 @@
 namespace MariusLab;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Owner extends Model
 {
+    use SoftDeletes;
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
+
     /**
      * Task owners id as it relates to a third party app;
      *
      * @var integer
      */
-    protected $owner_id;
+    protected $third_party_id;
 
     /**
-     * API key
+     * crypt() encrypted API key
      *
      * @var string
      */
