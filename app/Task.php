@@ -17,13 +17,6 @@ class Task extends Model
     protected $dates = ['deleted_at'];
 
     /**
-     * Identifier for task owner (set it to a user id or anything else)
-     *
-     * @var integer
-     */
-    protected $owner_id;
-
-    /**
      * Title of the task
      *
      * @var string
@@ -50,4 +43,9 @@ class Task extends Model
      * @var \datetime|null
      */
     protected $completed_date;
+
+    public function owner()
+    {
+        return $this->belongsTo(Owner::class);
+    }
 }
