@@ -45,6 +45,11 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'tasksapi' => [
+            'driver' => 'apikey',
+            'provider' => 'owners',
+        ]
     ],
 
     /*
@@ -69,6 +74,10 @@ return [
             'driver' => 'eloquent',
             'model' => MariusLab\User::class,
         ],
+        'owners' => [
+            'driver' => 'eloquent',
+            'model' => MariusLab\Owner::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',

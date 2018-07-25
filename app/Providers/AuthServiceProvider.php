@@ -2,8 +2,10 @@
 
 namespace MariusLab\Providers;
 
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use MariusLab\Owner;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,6 +27,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Auth::viaRequest('apikey', function(Request $request) {
+            return Owner::where('api_key', $request->header('X-Authorization'))->first();
+        });
     }
 }

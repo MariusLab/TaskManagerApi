@@ -2,10 +2,10 @@
 
 namespace MariusLab;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Owner extends Model
+class Owner extends Authenticatable
 {
     use SoftDeletes;
 
