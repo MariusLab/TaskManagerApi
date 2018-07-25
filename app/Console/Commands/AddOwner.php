@@ -34,24 +34,21 @@ class AddOwner extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle()
     {
         $third_party_id = $this->argument('unique_id');
-        $api_key = crypt($this->argument('api_key'), env("API_SALT", "dummysalt"));
+        $api_key = $this->argument('api_key');
 
-        $owner = Owner::where('third_party_id', $third_party_id)
-            ->first();
-        if ($owner !== null) {
-            $this->error('Task owner with provided id already exists.');
-            return;
+        if (strlen($api_key) > 190) {
+            $this->error('API key too long.');
         }
 
         $owner = Owner::where('api_key', $api_key)
             ->first();
         if ($owner !== null) {
-            $this->error('Task owner with provided api key already exists.');
+            $this->error('Provided api key already exists.');
             return;
         }
 
