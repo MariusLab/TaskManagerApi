@@ -52,6 +52,6 @@ class Handler extends ExceptionHandler
 
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        return response()->json(['error' => 'Authentication failed. Make sure your API key is valid.'], 401);
+        return response()->json(['error' => 'Authentication failed. Make sure your API key is valid.'], 403);
     }
 }
