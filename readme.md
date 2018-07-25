@@ -3,9 +3,11 @@ This is an example laravel project. A task manager that allows you to create, ed
 and delete tasks through a REST API.
 
 ## Setup
-After cloning the repository, configure your database connection in the .env file.
-
-Then run:
+Clone the repository, then run:
+```
+composer install
+```
+Configure your database connection in the .env file, then run:
 ```
 php artisan migrate:install
 ```
