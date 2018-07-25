@@ -1,6 +1,7 @@
 {
     "name": "mariuslab/taskmanager",
     "description": "A simple task manager controlled through a REST API",
+    "version": "1.0.0",
     "keywords": ["framework", "laravel", "task", "task manager", "todo"],
     "license": "MIT",
     "type": "project",
