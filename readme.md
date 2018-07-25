@@ -18,10 +18,11 @@ php artisan add:owner [id] [api_key]
 
 After adding the owner, you can now start making http requests (refer to the API docs).
 
-##API docs
+## API docs
+
 _**Every request must include the X-Authorization header with the api key.**_
 
-###-Show Task-
+### Show Task
 
   Returns json data about a single task.
 
@@ -80,7 +81,7 @@ _**Every request must include the X-Authorization header with the api key.**_
     **Content:** `{"error":"Authentication failed. Make sure your API key is valid."}`
 
 
-###-Create Task-
+### Create Task
 
   Returns json data about the newly created task or an error message.
 
@@ -150,7 +151,7 @@ _**Every request must include the X-Authorization header with the api key.**_
                    }`
 
 
-###-Update Task-
+### Update Task
 
   Returns json data about the updated task or an error message.
 
@@ -217,7 +218,7 @@ _**Every request must include the X-Authorization header with the api key.**_
                   }
 
 
-###-Delete Task-
+### Delete Task
 
   Returns empty response or an error message.
 
@@ -255,7 +256,7 @@ _**Every request must include the X-Authorization header with the api key.**_
 
   * **Code:** 404 Not Found <br />
 
-###-Show All Tasks-
+### Show All Tasks
 
   Returns json data about all tasks
 
